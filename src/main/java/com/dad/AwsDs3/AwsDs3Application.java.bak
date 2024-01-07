@@ -1,0 +1,13 @@
+package com.dad.AwsDs3;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class AwsDs3Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(AwsDs3Application.class, args);
+	}
+
+}

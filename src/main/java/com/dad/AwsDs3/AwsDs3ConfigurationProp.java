@@ -27,6 +27,8 @@ public class AwsDs3ConfigurationProp {
 	private String privateKey;
 	private String bucketName;
 
+	private String rootLocalCopy;
+
 
 	public String getAccessKey() {
 		return accessKey;
@@ -53,10 +55,18 @@ public class AwsDs3ConfigurationProp {
 	}
     
 
+	public String getRootLocalCopy() {
+		return rootLocalCopy;
+	}
+
+	public void setRootLocalCopy(String rootLocalCopy) {
+		this.rootLocalCopy = rootLocalCopy;
+	}
+
 	private void getProperties() {
 	    try {
 	        ClassPathResource resource;
-	        resource = new ClassPathResource("config/app.properties");
+	        resource = new ClassPathResource("application.properties");//"config/app.properties");
 
 	        Properties props = PropertiesLoaderUtils.loadProperties(resource);
 
@@ -71,6 +81,8 @@ public class AwsDs3ConfigurationProp {
 	        accessKey = props.getProperty("aws.accessKey");
 			privateKey = props.getProperty("aws.privatKey");
 			bucketName = props.getProperty("aws.bucketName");
+			
+			rootLocalCopy = props.getProperty("local.rootPath");
 
 	    } catch (BindException e) {
 	        throw new IllegalArgumentException(e);

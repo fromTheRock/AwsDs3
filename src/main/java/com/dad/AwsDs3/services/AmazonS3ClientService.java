@@ -12,6 +12,7 @@ import com.amazonaws.client.builder.AwsClientBuilder.EndpointConfiguration;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.ListMultipartUploadsRequest;
+import com.amazonaws.services.s3.model.ListPartsRequest;
 import com.amazonaws.services.s3.model.MultipartUpload;
 import com.amazonaws.services.s3.model.MultipartUploadListing;
 import com.dad.AwsDs3.AwsCliCmd;
@@ -20,15 +21,12 @@ import com.dad.AwsDs3.dto.UploadData;
 import com.dad.AwsDs3.services.interfaces.IAmazonS3Client;
 import com.dad.AwsDs3.services.interfaces.IMultipartUploads;
 
-public class MultipartUploadService implements IMultipartUploads {
-
-	private List<UploadData> listUploads;
+public class AmazonS3ClientService implements IAmazonS3Client {
 	
-	public MultipartUploadService() {
+	private AmazonS3 client = null;
+	
+	public AmazonS3ClientService() {
 		super();
-
-		listUploads = new ArrayList<UploadData>();
-					
 	}
 	
 	private AWSCredentialsProvider cp = new AWSCredentialsProvider() {
@@ -57,32 +55,27 @@ public class MultipartUploadService implements IMultipartUploads {
 		}
 	};
 
+
 	@Override
-	public List<UploadData> getMultipartUpload() throws Exception {
-		
-		if (TextUtils.isBlank(AwsDs3ConfigurationProp.getInstance().getAccessKey()))
-			throw new Exception("AccessKey vuota");
-		if (TextUtils.isBlank(AwsDs3ConfigurationProp.getInstance().getPrivateKey()))
-			throw new Exception("SecretKey vuota");
-		if (TextUtils.isBlank(AwsDs3ConfigurationProp.getInstance().getBucketName()))
-			throw new Exception("Nome Bucket non valido");
-		
+	public AmazonS3 getAmazonS3Client() throws Exception {
 
-		IAmazonS3Client cliSrv = MyServicesConfig.getInstance().getAmazonS3CkientService();
-		AmazonS3 cli = cliSrv.getAmazonS3Client();
-		ListMultipartUploadsRequest request = new ListMultipartUploadsRequest(AwsDs3ConfigurationProp.getInstance().getBucketName());
-		MultipartUploadListing loads = cli.listMultipartUploads(request);
-		
-		List<MultipartUpload> list = loads.getMultipartUploads();
-		for (MultipartUpload mpu : list) {
-			String id = mpu.getUploadId();
-		
-			String key = mpu.getKey();
-			Date init = mpu.getInitiated();
-			UploadData upload = new UploadData(id, key, init.toLocaleString());
-			listUploads.add(upload);
+		if (client == null) {
+			
+			if (TextUtils.isBlank(AwsDs3ConfigurationProp.getInstance().getAccessKey()))
+				throw new Exception("AccessKey vuota");
+			if (TextUtils.isBlank(AwsDs3ConfigurationProp.getInstance().getPrivateKey()))
+				throw new Exception("SecretKey vuota");
+			if (TextUtils.isBlank(AwsDs3ConfigurationProp.getInstance().getBucketName()))
+				throw new Exception("Nome Bucket non valido");
+			
+
+			EndpointConfiguration endpoint = new EndpointConfiguration(AwsCliCmd.DS3_END_POINT, "eu-west-1");
+			AmazonS3ClientBuilder builder = AmazonS3ClientBuilder.standard();
+			builder.setEndpointConfiguration(endpoint);
+			builder.setCredentials(cp);
+			client = builder.build();
+			
 		}
-
-		return listUploads;
+		return client;
 	}
 }

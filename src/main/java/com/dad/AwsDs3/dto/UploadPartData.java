@@ -5,7 +5,7 @@ public class UploadPartData {
 	public int partNumber;
     public String lastModified;
     public String eTag;
-    public int size;
+    public long size;
     
     public UploadPartData() {
 		super();

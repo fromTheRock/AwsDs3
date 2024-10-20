@@ -2,6 +2,8 @@
 
 This Project is a simpe Command Line Application that check unfinished Multi-part AWS Uploads.
 
+The program works but it isn't finished because it did not happen any more to have unfinished Multi-pert Uploads.
+
 ## Getting Started
 
 Compile the project with the command:
@@ -10,7 +12,11 @@ Compile the project with the command:
 mvnw package
 ´´´
 
-Run the program with 
+Run the program with:
+
+´´´cmd
+AwsDs3.cmd
+´´´
 
 ## Scope of this project
 

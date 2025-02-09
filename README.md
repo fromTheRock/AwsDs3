@@ -1,8 +1,8 @@
 # AwsDs3
 
-This Project is a simpe Command Line Application that check unfinished Multi-part AWS Uploads.
+This Project is a simple Command Line Application that check and fix unfinished Multi-part AWS Uploads.
 
-The program works but it isn't finished because it did not happen any more to have unfinished Multi-pert Uploads.
+The program works but it isn't finished because it do not happen any more to have unfinished Multi-pert Uploads in my S3 archive.
 
 ## Getting Started
 

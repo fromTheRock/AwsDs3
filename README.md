@@ -40,7 +40,7 @@ AWS-CLI is a good command line tool but really boaring to use on many files.
 
 I started working in a easier way, building tests and Services and thinking to add a user interface easy to use. 
 
-Eventually, I really needed the work done on my backups, so I took a shortcut, building just a Command Line application that automate a sequence of steps, only asking confirmations in few occasions.
+Eventually, I really needed the work done to fix my backups, so I took a shortcut, building just a Command Line application that automate a sequence of steps, only asking confirmations in few occasions.
 
 ## Reference Documentation
 

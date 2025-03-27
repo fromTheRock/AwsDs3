@@ -10,15 +10,15 @@ The compile file run test and connection to the bucket with the data in: _applic
 
 Compile the project with the command (
 
-´´´cmd
+```cmd
 mvnw package
-´´´
+```
 
 Run the program with:
 
-´´´cmd
+```cmd
 AwsDs3.cmd
-´´´ 
+``` 
 
 ## Project description
 

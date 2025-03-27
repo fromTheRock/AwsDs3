@@ -4,40 +4,45 @@ This Project is a simple Command Line Application that check and fix unfinished 
 
 The program works but it isn't finished because it do not happen any more to have unfinished Multi-pert Uploads in my S3 archive.
 
+The program works but it isn't finished, because it does not happen any more to have unfinished Multi-part Uploads in my Cubbit DS3 archive.
+
 ## Getting Started
+
+Make sure to configure the file: `AwsDs3/src/main/resources/application.properties`  
+The compiled program runs with the connection infot contained in: `application.properties` 
 
 Compile the project with the command:
 
-´´´cmd
+```cmd
 mvnw package
-´´´
+```
 
 Run the program with:
 
-´´´cmd
+```cmd
 AwsDs3.cmd
-´´´
+``` 
 
-## Scope of this project
+## Project description
 
 This project seek for all the unfinished multi-part uploads, check in the upload in partial or complete and if the file is partial, it Asks to Abort the upload.
 
-It is a develper application, not well documented, and not easy to be used from users who cannot read java code.  
-However this App has worked in ra real case.
+It is a develper application, not well documented, and not easy to use from users without some java knowledge.  
+However this App has worked in a real case.
 
-For sure it nead a lot of refactoring ad to add a good user interface and test units.
+This project still need some refactoring and lacks a good user interface and many units tests.
 
-## Why I started developping this App
+## Application Use Case
 
 During a Sync command of a big folder to my bucket on Cubbit with Cyperduck some big files upload was splitted in multi-part uploads but sometimes the upload did not complete.
 
-I really need a way to check all this muiltipart uploads, check them and finally Abort them.
+I needed a way to check all this multipart uploads, check them and finally Abort them.
 
-AWS-CLI is a good command line tool but rally boaring to use so many times.
+AWS-CLI is a good command line tool but really boaring to use on many files.
 
-I started working in a orderd way, building tests and Services and thinking to add a user interface easy to use. 
+I started working in a easier way, building tests and Services and thinking to add a user interface easy to use. 
 
-But I really need the work done on my backups, so I reverted to a Command Line application with a sequential steps of commands only asking confirmations in few occasions.
+Eventually, I really needed the job done to fix big files in my backup, so I took a shortcut, building just a Command Line application that automate a sequence of steps, only asking confirmations in few occasions.
 
 ## Reference Documentation
 
